@@ -5,11 +5,10 @@ def baseline(X):
     X1, X2 = XtoX1X2(X)
     same = abs(X1-X2)
 
-    sum_feature = np.sum(same, axis=0)
-    zero_feature = np.sum(X, axis=0)
-    one_feature = np.sum(X == 1, axis=0)
+    sum_feature = np.sum(same, axis=1)[:, np.newaxis]
+    one_feature = np.sum(X, axis=1)[:, np.newaxis]
 
-    features = np.concatenate((sum_feature, zero_feature, one_feature), axis=1)
+    features = np.concatenate((sum_feature, one_feature), axis=1)
 
     return (features)
 

@@ -21,7 +21,7 @@ def generate_mixture(allele_pairs, mean_rfus):
     return np.sum(persons, axis=0)
 
 
-def generate_samples(n, is_binary, n_contributors=3):
+def generate_samples(n, is_binary, n_contributors=3, threshold = 50):
     res = np.zeros((n, len(freqs) * 2))
     for i in range(n):
         allele_pairs = [generate_alleles() for _ in range(2*n_contributors)]
@@ -35,7 +35,7 @@ def generate_samples(n, is_binary, n_contributors=3):
                 allele_pairs[n_contributors:], mean_rfus[n_contributors:])
     y = np.array([1] * int(n / 2) + [0] * int(n / 2))
     if is_binary:
-        return 1*(res>50), y
+        return 1*(res>threshold), y
     return res, y
 
 
