@@ -35,7 +35,7 @@ def generate_samples(n, is_binary):
                 allele_pairs[3:], mean_rfus[3:])
     y = np.array([1] * int(n / 2) + [0] * int(n / 2))
     if is_binary:
-        return 1*(X>50), y
+        return 1*(res>50), y
     return res, y
 
 
