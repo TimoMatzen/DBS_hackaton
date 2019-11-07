@@ -2,7 +2,7 @@ import numpy as np
 import generate_samples as gen
 
 from keras.models import Sequential
-from keras.layers import Dense, Conv1D, Conv2D, Flatten, Dropout, MaxPooling2D, LeakyReLU
+from keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D, LeakyReLU
 from keras.utils import to_categorical
 
 from sklearn.metrics import confusion_matrix
