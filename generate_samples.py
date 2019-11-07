@@ -35,16 +35,11 @@ def generate_samples(n, is_binary):
                 allele_pairs[3:], mean_rfus[3:])
     y = np.array([1] * int(n / 2) + [0] * int(n / 2))
     if is_binary:
-        return 1*(X>50), y
+        return 1*(res>50), y
     return res, y
 
 
 if __name__ == '__main__':
     allele_pairs = [generate_alleles() for _ in range(3)]
-    X, y  = generate_samples(1000)
+    X, y  = generate_samples(1000, False)
     binary = 1 * (X > 50)
-    print(np.mean(np.sum(abs(binary[:, :10]-binary[:, 10:]), axis=1)*y))
-    print(np.mean(np.sum(abs(binary[:, :10]-binary[:, 10:]), axis=1)*(1-np.array(y))))
-    import matplotlib.pyplot as plt
-    plt.matshow(abs(binary[450:550, :10]-binary[450:550, 10:]))
-    print(np.mean(binary, axis=0))
