@@ -3,9 +3,9 @@ import numpy as np
 
 def baseline(X):
     X1, X2 = XtoX1X2(X)
-    same = abs(X1-X2)
+    diff = abs(X1-X2)
 
-    sum_feature = np.sum(same, axis=1)[:, np.newaxis]
+    sum_feature = np.sum(diff, axis=1)[:, np.newaxis]
     one_feature = np.sum(X, axis=1)[:, np.newaxis]
 
     features = np.concatenate((sum_feature, one_feature), axis=1)
@@ -24,3 +24,8 @@ def XtoX1X2(X):
 def X1X2toX(X1,X2):
     return np.concatenate((X1,X2), axis=1)
 
+def calc_prob_multiple_samples(mixtures, model):
+    probs = []
+    for mixture in mixtures:
+        probs.append(model.predict_proba(mixture)[:,1][:,np.newaxis])
+    return np.asarray(probs)

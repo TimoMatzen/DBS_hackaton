@@ -1,6 +1,8 @@
 import numpy as np
 
-freqs = [.3, .3, .05, .05, .05, .05, .05, .05, .05, .05]
+from Models import diff_features
+
+freqs = [.42, .3, .01, .05, .05, .05, .01, .01, .05, .05]
 
 
 def generate_alleles():
@@ -37,6 +39,12 @@ def generate_samples(n, is_binary, n_contributors=3, threshold = 50):
     if is_binary:
         return 1*(res>threshold), y
     return res, y
+
+def generate_multiple_samples(n, is_binary, n_contributors=3, threshold=50, n_loci = 20):
+    samples = []
+    for i in range(n_loci):
+        samples.append(diff_features(generate_samples(n, is_binary, n_contributors, threshold)[0]))
+    return samples
 
 
 if __name__ == '__main__':
