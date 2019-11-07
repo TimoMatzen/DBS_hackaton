@@ -4,7 +4,7 @@ freqs = [.3, .3, .05, .05, .05, .05, .05, .05, .05, .05]
 
 
 def generate_alleles():
-    return np.random.choice(len(freqs), 2, freqs)
+    return np.random.choice(len(freqs), 2, p=freqs)
 
 
 def generate_person(allele_pair, mean_rfu):
@@ -42,4 +42,6 @@ if __name__ == '__main__':
     binary = 1 * (X > 50)
     print(np.mean(np.sum(abs(binary[:, :10]-binary[:, 10:]), axis=1)*y))
     print(np.mean(np.sum(abs(binary[:, :10]-binary[:, 10:]), axis=1)*(1-np.array(y))))
-
+    import matplotlib.pyplot as plt
+    plt.matshow(abs(binary[450:550, :10]-binary[450:550, 10:]))
+    print(np.mean(binary, axis=0))
